@@ -4,402 +4,374 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Infografía | Tema 01: Introducción a la Ingeniería del Software</title>
-  <meta name="description" content="Infografía educativa: Tema 01 - Introducción a la Ingeniería del Software. Contenido ampliado, secciones técnicas y animaciones." />
+  <meta name="description" content="Infografía educativa: Introducción a la Ingeniería del Software. Contenido ampliado, iconos, imágenes, y animaciones con animate.css y anime.js." />
 
-  <!-- Animate.css (efectos listos para usar) -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-        integrity="sha512-b7fJg7NcxZbLWZpF1j0xA7mCkK1tT9c5vHn5y9R7wJmD1e2C7h6gq9Hj6JxX3q4Y2X5v0mWjYp0h8bQ2Yb9Q4g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Iconos y animaciones -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
 
   <style>
-    /* ===========================================================
-       RESETEO Y VARIABLES DE TEMA
-       =========================================================== */
-    *, *::before, *::after { box-sizing: border-box; }
+    /* ========= RESET + THEME ========= */
+    *,*::before,*::after{box-sizing:border-box}
     :root{
       --bg:#0b1220; --panel:#0f172a; --paper:#0b1220;
-      --text:#e5e7eb; --muted:#94a3b8; --primary:#2563eb;
-      --primary-2:#60a5fa; --accent:#22c55e; --warning:#f59e0b;
-      --danger:#ef4444; --card:#111827; --ring:rgba(37,99,235,.35);
-      --shadow:0 10px 30px rgba(2,6,23,.55); --radius:18px;
+      --text:#e5e7eb; --muted:#94a3b8; --primary:#2563eb; --primary-2:#60a5fa;
+      --accent:#22c55e; --warning:#f59e0b; --danger:#ef4444; --card:#111827;
+      --ring:rgba(37,99,235,.35); --shadow:0 10px 30px rgba(2,6,23,.55); --radius:18px;
     }
-
-    html, body { height: 100%; }
+    html,body{height:100%}
     body{
-      margin:0;
+      margin:0;color:var(--text);
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",Arial;
       background:
-        radial-gradient(1200px 1200px at 80% -10%, rgba(37,99,235,.15), transparent 60%),
-        radial-gradient(800px 800px at 10% 110%, rgba(34,197,94,.10), transparent 60%),
+        radial-gradient(1200px 1200px at 80% -10%, rgba(37,99,235,.18), transparent 60%),
+        radial-gradient(900px 900px at 10% 110%, rgba(34,197,94,.10), transparent 60%),
         var(--bg);
-      color:var(--text);
-      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",Arial,"Apple Color Emoji","Segoe UI Emoji";
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
     }
-
-    /* Barra de progreso de lectura */
-    .progress{
-      position:fixed; inset:0 auto auto 0; height:4px; width:0%;
-      background:linear-gradient(90deg,#60a5fa,#22c55e);
-      box-shadow:0 0 12px rgba(96,165,250,.7);
-      z-index:9999;
-      transition:width .15s linear;
-    }
-
-    /* CONTENEDOR */
     .sheet{
-      width:min(100%, 1060px);
+      width:min(100%, 1100px);
       margin:24px auto 80px; padding:28px; border-radius:var(--radius);
       background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
       box-shadow:var(--shadow); outline:1px solid rgba(148,163,184,.12);
     }
 
+    /* ========= HERO ========= */
     header.hero{
-      position:relative; border-radius:calc(var(--radius)+6px);
-      padding:clamp(22px, 4vw, 40px);
-      background:linear-gradient(135deg, rgba(37,99,235,.50), rgba(15,23,42,.85) 45%, rgba(34,197,94,.35));
-      overflow:hidden;
+      position:relative; overflow:hidden; border-radius:calc(var(--radius) + 6px);
+      padding:clamp(22px,4vw,38px);
+      background:linear-gradient(135deg, rgba(37,99,235,.66), rgba(15,23,42,.85) 45%, rgba(34,197,94,.35));
       isolation:isolate;
     }
-    .hero h1{ margin:0 0 6px; font-size:clamp(28px, 3.2vw, 42px); letter-spacing:.2px; }
-    .hero p{ margin:0; color:var(--muted); }
+    .hero::after{
+      content:""; position:absolute; inset:-30%; z-index:-1;
+      background:radial-gradient(600px 300px at 20% 10%, rgba(96,165,250,.25), transparent 60%),
+                 radial-gradient(700px 300px at 80% 110%, rgba(34,197,94,.16), transparent 60%);
+      filter:blur(30px);
+    }
     .badge{
-      display:inline-flex; align-items:center; gap:8px; margin-bottom:8px;
-      background:rgba(2,6,23,.55);
-      border:1px solid rgba(148,163,184,.18);
-      color:#cbd5e1; padding:6px 12px; border-radius:999px; font-size:13px; letter-spacing:.2px;
+      display:inline-flex; align-items:center; gap:8px; margin-bottom:10px;
+      background:rgba(2,6,23,.55); border:1px solid rgba(148,163,184,.18);
+      color:#cbd5e1; padding:6px 12px; border-radius:999px; font-size:13px;
       backdrop-filter:saturate(140%) blur(4px);
     }
-    .idline{ margin-top:10px; display:inline-flex; gap:10px; align-items:center; flex-wrap:wrap; }
-    .id{ background:rgba(148,163,184,.10); border:1px solid rgba(148,163,184,.25); color:#e2e8f0; padding:6px 10px; border-radius:999px; font-size:13px; }
+    .hero h1{margin:0 0 8px; font-size:clamp(28px,3.6vw,44px); letter-spacing:.2px}
+    .hero p{margin:0; color:var(--muted)}
+    .idline{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+    .id{display:inline-flex; gap:8px; align-items:center;
+      background:rgba(148,163,184,.10); border:1px solid rgba(148,163,184,.25);
+      color:#e2e8f0; padding:6px 10px; border-radius:999px; font-size:13px}
+    .id i{font-size:16px; opacity:.9}
 
-    /* Partículas decorativas en el hero (canvas/SVG arriba) */
-    .hero-canvas{ position:absolute; inset:0; z-index:-1; opacity:.35; pointer-events:none; }
-
-    /* GRILLA */
-    .grid{ display:grid; gap:18px; margin-top:22px; grid-template-columns:repeat(12,1fr); }
+    /* ========= GRID & CARDS ========= */
+    .grid{display:grid; gap:18px; margin-top:22px; grid-template-columns:repeat(12,1fr)}
     .card{
-      position:relative; display:flow-root;
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      position:relative; display:flow-root; overflow:hidden; padding:18px;
       border:1px solid rgba(148,163,184,.12); border-radius:var(--radius);
-      padding:18px; overflow:hidden;
-      transform:translateY(6px); opacity:.001; /* para revelado */
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
     }
-    .card h2{ margin:0 0 8px; font-size:clamp(18px, 2.2vw, 24px); }
-    .card p{ margin:8px 0 0; color:#d1d5db; }
-    .muted{ color:var(--muted); }
-
-    /* LISTAS Y CHIPS */
-    ul.clean{ list-style:none; margin:8px 0 0; padding:0; }
-    ul.clean li{ margin:6px 0; display:grid; grid-template-columns:18px 1fr; gap:10px; align-items:flex-start; }
-    .dot{ width:10px; height:10px; margin-top:7px; border-radius:50%; background:var(--primary-2);
-      box-shadow:0 0 0 2px rgba(96,165,250,.35), 0 0 12px rgba(96,165,250,.45); }
-
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
-    .chip{ font-size:13px; padding:6px 10px; border-radius:999px; background:rgba(148,163,184,.12); border:1px solid rgba(148,163,184,.20); }
-    .chip.kpi{ background:rgba(34,197,94,.12); border-color:rgba(34,197,94,.25); color:#bbf7d0; }
-
-    /* PROCESOS 12207: auto-fit para evitar choques */
-    .processes{ display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:8px; width:100%; }
-    .proc{
-      padding:10px; border-radius:12px; text-align:center; background:rgba(2,6,23,.45);
-      border:1px dashed rgba(148,163,184,.30); word-break:break-word; hyphens:auto;
-      transition:transform .25s ease, box-shadow .25s ease;
+    .card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(96,165,250,.35);
+      box-shadow:0 16px 40px rgba(2,6,23,.45);
     }
-    .proc:hover{ transform:translateY(-2px) scale(1.02); box-shadow:0 10px 20px rgba(2,6,23,.4); }
+    .card h2{margin:0 0 8px; font-size:clamp(18px,2.2vw,24px)}
+    .card p{margin:8px 0 0; color:#d1d5db}
+    .muted{color:var(--muted)}
 
-    /* TABLAS */
-    table{ width:100%; border-collapse:collapse; margin-top:8px; }
-    th,td{ border:1px solid rgba(148,163,184,.18); padding:10px; text-align:left; }
-    th{ background:rgba(148,163,184,.10); }
+    /* ========= LISTAS / CHIPS ========= */
+    ul.clean{list-style:none; margin:8px 0 0; padding:0}
+    ul.clean li{margin:8px 0; display:grid; grid-template-columns:22px 1fr; gap:10px; align-items:flex-start}
+    .dot{width:10px; height:10px; margin-top:7px; border-radius:50%;
+      background:var(--primary-2); box-shadow:0 0 0 2px rgba(96,165,250,.35), 0 0 12px rgba(96,165,250,.45)}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .chip{display:inline-flex; align-items:center; gap:6px; font-size:13px; padding:6px 10px; border-radius:999px;
+      background:rgba(148,163,184,.12); border:1px solid rgba(148,163,184,.20)}
+    .chip.kpi{background:rgba(34,197,94,.12); border-color:rgba(34,197,94,.25); color:#bbf7d0}
+    .chip i{font-size:15px}
 
-    /* GALERÍA */
-    .fig-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:12px; margin-top:8px; }
-    .fig{ grid-column:span 4; border-radius:14px; overflow:hidden; border:1px solid rgba(148,163,184,.12);
-      transform:translateY(6px); opacity:.001; }
-    .fig img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s ease; }
-    .fig:hover img{ transform:scale(1.06); }
+    /* ========= MOSAICO DE PROCESOS ========= */
+    .processes{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:10px; width:100%}
+    .proc{padding:12px; border-radius:12px; text-align:center;
+      background:rgba(2,6,23,.45); border:1px dashed rgba(148,163,184,.30);
+      word-break:break-word; hyphens:auto; transition:background .2s ease, transform .2s ease}
+    .proc:hover{transform:translateY(-2px); background:rgba(2,6,23,.6)}
+    .proc i{display:block; font-size:20px; margin-bottom:6px; opacity:.9}
 
-    a{ color:#93c5fd; text-decoration:none; }
-    a:hover{ text-decoration:underline; }
+    /* ========= GALERÍA ========= */
+    .gallery{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:6px}
+    .tile{position:relative; border-radius:14px; overflow:hidden; aspect-ratio:16/10; isolation:isolate}
+    .tile img{width:100%; height:100%; object-fit:cover; filter:contrast(1.05) saturate(1.05)}
+    .tile::after{content:attr(data-title); position:absolute; inset:auto 0 0 0; padding:10px 12px;
+      background:linear-gradient(180deg, rgba(2,6,23,0), rgba(2,6,23,.85));
+      color:#e5e7eb; font-size:14px}
 
-    /* RESPONSIVO */
-    @media (max-width: 960px){ .grid{ grid-template-columns:repeat(6,1fr); } .fig{ grid-column:span 6; } }
-    @media (max-width: 560px){ .grid{ grid-template-columns:repeat(2,1fr); } .fig{ grid-column:span 2; } }
+    /* ========= BARRAS / MÉTRICAS ========= */
+    .meters{display:grid; gap:10px}
+    .meter{display:grid; gap:6px}
+    .meter .label{display:flex; align-items:center; gap:8px; font-size:14px; color:#cbd5e1}
+    .meter .bar{height:10px; border-radius:999px; background:rgba(148,163,184,.18); overflow:hidden}
+    .meter .fill{height:100%; width:0%; background:linear-gradient(90deg, var(--primary), var(--primary-2))}
+    .meter small{color:var(--muted)}
 
-    /* IMPRESIÓN (sin animaciones) */
+    /* ========= TABLAS ========= */
+    table{width:100%; border-collapse:collapse; margin-top:8px}
+    th,td{border:1px solid rgba(148,163,184,.18); padding:10px; text-align:left}
+    th{background:rgba(148,163,184,.10)}
+
+    a{color:#93c5fd; text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    /* ========= RESPONSIVE ========= */
+    @media (max-width:1024px){.grid{grid-template-columns:repeat(6,1fr)}}
+    @media (max-width:560px){.grid{grid-template-columns:repeat(2,1fr)}}
+
+    /* ========= PRINT ========= */
     @media print{
-      :root{ --bg:#ffffff; --paper:#ffffff; --text:#111827; --muted:#334155; --card:#ffffff; }
-      body{ background:#ffffff; color:var(--text); }
-      .sheet{ width:210mm; margin:0 auto; padding:12mm; box-shadow:none; outline:none; }
-      .hero{ background:linear-gradient(135deg,#e0ecff,#f1f5f9); color:#0f172a; }
-      a{ color:#1d4ed8; text-decoration:none; }
-      .chip.kpi{ color:#14532d; }
-      .progress, .hero-canvas{ display:none !important; }
-    }
-
-    /* Accesibilidad: respetar reducción de movimiento */
-    @media (prefers-reduced-motion: reduce){
-      .card, .fig{ transform:none !important; opacity:1 !important; }
-      .proc{ transition:none; }
+      :root{--bg:#ffffff; --paper:#ffffff; --text:#111827; --muted:#334155; --card:#ffffff}
+      body{background:#ffffff; color:var(--text)}
+      .sheet{width:210mm; margin:0 auto; padding:12mm; box-shadow:none; outline:none}
+      .hero{background:linear-gradient(135deg,#e0ecff,#f1f5f9); color:#0f172a}
+      .animate__animated{animation:none!important}
+      a{color:#1d4ed8}
+      .chip.kpi{color:#14532d}
     }
   </style>
 </head>
 <body>
-  <!-- Progreso de lectura -->
-  <div class="progress" id="progress"></div>
-
   <main class="sheet">
-    <header class="hero animate__animated animate__fadeIn">
-      <!-- Fondo animado -->
-      <svg class="hero-canvas" id="hero-canvas" viewBox="0 0 1200 400" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#60a5fa"/>
-            <stop offset="100%" stop-color="#22c55e"/>
-          </linearGradient>
-        </defs>
-        <g id="nodes"></g>
-      </svg>
-
-      <span class="badge animate__animated animate__fadeInDown">Electiva I · Introducción a la Ingeniería del Software · S10A y S10B</span>
-      <h1 class="animate__animated animate__fadeInDown">Tema 01 · Introducción a la Ingeniería del Software</h1>
-      <p class="muted animate__animated animate__fadeInUp">Infografía de referencia. Contenido ampliado, imágenes y animaciones.</p>
-      <div class="idline animate__animated animate__fadeInUp">
-        <span class="id">Carlos David Isturiz</span>
-        <span class="id">Cédula: V32.267.582</span>
+    <!-- HERO -->
+    <header class="hero animate__animated animate__fadeInDown">
+      <span class="badge"><i class="ri-graduation-cap-line"></i> Electiva I · Introducción a la Ingeniería del Software · S10A y S10B</span>
+      <h1 id="titleGlow">Tema 01 · Introducción a la Ingeniería del Software</h1>
+      <p class="muted">Infografía</p>
+      <div class="idline">
+        <span class="id"><i class="ri-user-line"></i> Carlos David Isturiz</span>
+        <span class="id"><i class="ri-id-card-line"></i> Cédula: V32.267.582</span>
       </div>
     </header>
 
-    <!-- ========================= GALERÍA / IMÁGENES RELACIONADAS ========================= -->
-    <section class="grid">
-      <article class="card reveal" style="grid-column: span 12;">
-        <h2>Imágenes relacionadas</h2>
-        <p class="muted">Arquitectura, colaboración, pruebas y despliegue continuo.</p>
-        <div class="fig-grid">
-          <figure class="fig reveal"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=60" alt="Código en pantalla y equipo de desarrollo" /></figure>
-          <figure class="fig reveal"><img src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=1200&q=60" alt="Reunión de equipo revisando requisitos" /></figure>
-          <figure class="fig reveal"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?auto=format&fit=crop&w=1200&q=60" alt="Infraestructura en nube y servidores" /></figure>
-        </div>
-      </article>
+    <!-- GALERÍA -->
+    <section class="card reveal animate__animated" style="grid-column:1/-1; margin-top:16px">
+      <h2><i class="ri-image-2-line"></i> Imágenes relacionadas</h2>
+      <p class="muted">Arquitectura, colaboración, pruebas y despliegue continuo.</p>
+      <div class="gallery">
+        <figure class="tile" data-title="Arquitectura de sistemas">
+          <img alt="Circuitos y arquitectura" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop"/>
+        </figure>
+        <figure class="tile" data-title="Colaboración y agile">
+          <img alt="Colaboración en equipo" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1200&auto=format&fit=crop"/>
+        </figure>
+        <figure class="tile" data-title="Pruebas y entrega continua">
+          <img alt="DevOps y CI/CD" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"/>
+        </figure>
+      </div>
     </section>
 
-    <!-- ========================= CONCEPTOS BÁSICOS ========================= -->
+    <!-- CONCEPTOS BÁSICOS -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Definición y alcance</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-compasses-2-line"></i> Definición y alcance</h2>
         <p>Disciplina que aplica principios de ingeniería al <strong>desarrollo, operación y mantenimiento</strong> de sistemas de software de forma <em>sistemática, disciplinada y cuantificable</em>. Abarca métodos, procesos, herramientas, estándares y roles que permiten construir software <strong>útil, confiable, seguro, mantenible y sostenible</strong> en el tiempo.</p>
         <ul class="clean">
-          <li><span class="dot"></span><span>Enfoque sobre <strong>ciclo de vida completo</strong>: concepción, requisitos, arquitectura, construcción, V&V, despliegue, operación, evolución y retiro.</span></li>
+          <li><span class="dot"></span><span>Enfoque de <strong>ciclo de vida completo</strong>: concepción, requisitos, arquitectura, construcción, V&V, despliegue, operación, evolución y retiro.</span></li>
           <li><span class="dot"></span><span><strong>Base de conocimiento</strong>: SWEBOK (IEEE) y normas ISO/IEC/IEEE (12207, 25010, 29148, 15288).</span></li>
-          <li><span class="dot"></span><span><strong>Resultados esperados</strong>: calidad, previsibilidad del proceso, reducción de riesgo y costo total de propiedad (TCO).</span></li>
+          <li><span class="dot"></span><span><strong>Resultados</strong>: mayor calidad, previsibilidad, reducción de riesgo y del costo total de propiedad (TCO).</span></li>
         </ul>
         <div class="chips">
-          <span class="chip kpi">Utilidad</span><span class="chip kpi">Fiabilidad</span>
-          <span class="chip">Mantenibilidad</span><span class="chip">Escalabilidad</span><span class="chip">Sostenibilidad</span>
+          <span class="chip kpi"><i class="ri-checkbox-circle-line"></i> Utilidad</span>
+          <span class="chip kpi"><i class="ri-shield-check-line"></i> Fiabilidad</span>
+          <span class="chip"><i class="ri-tools-line"></i> Mantenibilidad</span>
+          <span class="chip"><i class="ri-bar-chart-line"></i> Escalabilidad</span>
+          <span class="chip"><i class="ri-leaf-line"></i> Sostenibilidad</span>
         </div>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Historia y contexto</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-lightbulb-flash-line"></i> Historia y contexto</h2>
         <ul class="clean">
-          <li><span class="dot"></span><span><strong>Crisis del software</strong> (60-70): sobrecostes, retrasos y fallos.</span></li>
+          <li><span class="dot"></span><span><strong>Crisis del software</strong> (60-70): sobrecostes y fallos → necesidad de procesos formales.</span></li>
           <li><span class="dot"></span><span><strong>Normalización</strong>: estándares de ciclo de vida, calidad y requisitos; consolidación del SWEBOK.</span></li>
-          <li><span class="dot"></span><span><strong>Transición ágil-DevOps</strong>: de ciclos largos a entrega continua.</span></li>
-          <li><span class="dot"></span><span><strong>Nube e IA</strong>: arquitecturas distribuidas, nuevos retos de seguridad, ética y gobernanza.</span></li>
+          <li><span class="dot"></span><span><strong>Transición ágil-DevOps</strong>: de ciclos largos a entrega continua, con automatización y cultura de colaboración.</span></li>
+          <li><span class="dot"></span><span><strong>Nube e IA</strong>: sistemas distribuidos, datos a escala, nuevos retos de seguridad, ética y gobernanza.</span></li>
         </ul>
       </article>
     </section>
 
-    <!-- ========================= CICLO DE VIDA 12207 ========================= -->
+    <!-- CICLO DE VIDA -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Ciclo de vida (ISO/IEC/IEEE 12207)</h2>
-        <p class="muted">Marco aplicable a múltiples modelos (secuencial, incremental, iterativo, ágil). Procesos primarios, de soporte y organizacionales.</p>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-loop-right-line"></i> Ciclo de vida (ISO/IEC/IEEE 12207)</h2>
+        <p class="muted">Marco aplicable a múltiples modelos (secuencial, incremental, iterativo, ágil). Agrupa procesos <em>primarios</em>, de <em>soporte</em> y <em>organizacionales</em>.</p>
         <div class="processes" aria-label="Procesos de ciclo de vida">
-          <div class="proc">Adquisición</div>
-          <div class="proc">Suministro</div>
-          <div class="proc">Desarrollo</div>
-          <div class="proc">Operación</div>
-          <div class="proc">Mantenimiento</div>
-          <div class="proc">Retiro</div>
-          <div class="proc">Gestión de proyectos</div>
-          <div class="proc">Gestión de la configuración</div>
-          <div class="proc">Verificación</div>
-          <div class="proc">Validación</div>
-          <div class="proc">Aseguramiento de la calidad</div>
-          <div class="proc">Medición y mejora</div>
+          <div class="proc"><i class="ri-hand-coin-line"></i>Adquisición</div>
+          <div class="proc"><i class="ri-hand-heart-line"></i>Suministro</div>
+          <div class="proc"><i class="ri-code-s-slash-line"></i>Desarrollo</div>
+          <div class="proc"><i class="ri-rocket-line"></i>Operación</div>
+          <div class="proc"><i class="ri-wrench-line"></i>Mantenimiento</div>
+          <div class="proc"><i class="ri-archive-2-line"></i>Retiro</div>
+          <div class="proc"><i class="ri-projector-line"></i>Gestión de proyectos</div>
+          <div class="proc"><i class="ri-git-branch-line"></i>Gestión de la configuración</div>
+          <div class="proc"><i class="ri-shield-check-line"></i>Verificación</div>
+          <div class="proc"><i class="ri-checkbox-circle-line"></i>Validación</div>
+          <div class="proc"><i class="ri-medal-line"></i>Aseguramiento de la calidad</div>
+          <div class="proc"><i class="ri-line-chart-line"></i>Medición y mejora</div>
         </div>
-        <p>Planificación, estimación, gestión de riesgos, control de cambios, garantía de calidad, auditorías, revisión técnica, aceptación, transición y <strong>retirada controlada</strong>.</p>
+        <p>Incluye planificación, estimación, gestión de riesgos, control de cambios, garantía de calidad, auditorías, revisión técnica, aceptación, transición a operación y <strong>retirada controlada</strong> con preservación de datos.</p>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Modelos y enfoques</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-route-line"></i> Modelos y enfoques</h2>
         <ul class="clean">
-          <li><span class="dot"></span><span><strong>Cascada/V</strong>: entornos regulados y requisitos estables; V&V por fases.</span></li>
-          <li><span class="dot"></span><span><strong>Incremental/Iterativo</strong>: entregas parciales y aprendizaje progresivo.</span></li>
-          <li><span class="dot"></span><span><strong>Ágil (Scrum/Kanban/XP)</strong>: valor temprano, adaptabilidad, inspección y mejora continua.</span></li>
-          <li><span class="dot"></span><span><strong>Lean/DevOps</strong>: calidad en origen, automatización, despliegue frecuente, observabilidad.</span></li>
+          <li><span class="dot"></span><span><strong>Cascada/V</strong>: regulación y requisitos estables; fuerte trazabilidad y V&V por fases.</span></li>
+          <li><span class="dot"></span><span><strong>Incremental/Iterativo</strong>: entregas parciales con aprendizaje continuo.</span></li>
+          <li><span class="dot"></span><span><strong>Ágil</strong> (Scrum/Kanban/XP): valor temprano, inspección y mejora continua.</span></li>
+          <li><span class="dot"></span><span><strong>Lean/DevOps</strong>: flujo, calidad en origen, automatización, despliegue frecuente y observabilidad.</span></li>
         </ul>
-        <div class="chips"><span class="chip">Sprints</span><span class="chip">Backlog</span><span class="chip">CI/CD</span><span class="chip">Entrega continua</span><span class="chip">Observabilidad</span></div>
+        <div class="chips">
+          <span class="chip"><i class="ri-timer-flash-line"></i> Sprints</span>
+          <span class="chip"><i class="ri-list-check-2"></i> Backlog</span>
+          <span class="chip"><i class="ri-git-commit-line"></i> CI/CD</span>
+          <span class="chip"><i class="ri-swap-box-line"></i> Entrega continua</span>
+          <span class="chip"><i class="ri-eye-2-line"></i> Observabilidad</span>
+        </div>
       </article>
     </section>
 
-    <!-- ========================= STAKEHOLDERS / GOBERNANZA ========================= -->
+    <!-- REQUISITOS / ARTEFACTOS -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Stakeholders y dominios</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-sticky-note-line"></i> Requisitos (ISO/IEC/IEEE 29148)</h2>
+        <p>Definen <strong>qué</strong> debe lograr el sistema y bajo qué restricciones. Se clasifican en <em>funcionales</em> y <em>no funcionales</em> (calidad, rendimiento, seguridad, compatibilidad, usabilidad, mantenibilidad, portabilidad; ver ISO/IEC 25010).</p>
         <ul class="clean">
-          <li><span class="dot"></span><span><strong>Usuarios</strong>: usabilidad, accesibilidad, privacidad.</span></li>
-          <li><span class="dot"></span><span><strong>Negocio</strong>: valor, ROI, time-to-market.</span></li>
-          <li><span class="dot"></span><span><strong>Operaciones</strong>: confiabilidad, SLOs, costes.</span></li>
-          <li><span class="dot"></span><span><strong>Compliance</strong>: regulación sectorial y auditorías.</span></li>
-        </ul>
-      </article>
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Gobernanza de producto</h2>
-        <ul class="clean">
-          <li><span class="dot"></span><span>Visión, roadmap y priorización por impacto/coste (ICE/RICE).</span></li>
-          <li><span class="dot"></span><span>Definition of Ready / Done, acuerdos de trabajo y estándares.</span></li>
-          <li><span class="dot"></span><span>Discovery continuo, demos y retrospectivas accionables.</span></li>
-        </ul>
-      </article>
-    </section>
-
-    <!-- ========================= REQUISITOS / ARTEFACTOS ========================= -->
-    <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Requisitos (ISO/IEC/IEEE 29148)</h2>
-        <ul class="clean">
-          <li><span class="dot"></span><span><strong>Elicitación</strong>: entrevistas, talleres, prototipos, análisis de procesos y datos.</span></li>
-          <li><span class="dot"></span><span><strong>Especificación</strong>: historias, casos de uso, reglas de negocio, modelos de dominio.</span></li>
-          <li><span class="dot"></span><span><strong>Calidad</strong>: claros, completos, verificables, rastreables, sin ambigüedad.</span></li>
-          <li><span class="dot"></span><span><strong>Antipatrones</strong>: soluciones disfrazadas, vaguedades, mezcla requisitos-diseño.</span></li>
-          <li><span class="dot"></span><span><strong>Trazabilidad</strong>: matriz Req→Diseño→Pruebas→Release.</span></li>
+          <li><span class="dot"></span><span><strong>Elicitación</strong>: entrevistas, talleres, observación, prototipos, análisis de procesos, minería de datos.</span></li>
+          <li><span class="dot"></span><span><strong>Especificación</strong>: historias de usuario + criterios de aceptación, casos de uso, escenarios, reglas de negocio, modelos de dominio.</span></li>
+          <li><span class="dot"></span><span><strong>Calidad</strong> de requisitos: claros, completos, consistentes, verificables, rastreables, sin ambigüedad.</span></li>
+          <li><span class="dot"></span><span><strong>Antipatrones</strong>: soluciones disfrazadas, vaguedades (“etc.”), mezcla requisito-diseño.</span></li>
+          <li><span class="dot"></span><span><strong>Trazabilidad</strong>: matriz Req→Diseño→Pruebas→Release para controlar cambios y cumplimiento.</span></li>
         </ul>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Artefactos típicos</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-file-list-3-line"></i> Artefactos típicos</h2>
         <ul class="clean">
-          <li><span class="dot"></span><span>Backlog, épicas, historias y criterios de aceptación.</span></li>
-          <li><span class="dot"></span><span>Documento de visión y alcance.</span></li>
+          <li><span class="dot"></span><span>Backlog de producto, épicas, historias y criterios de aceptación.</span></li>
+          <li><span class="dot"></span><span>Especificación de requisitos o documento de visión/alcance.</span></li>
           <li><span class="dot"></span><span>Modelos UML/DFD, diccionario de datos, catálogo de APIs (OpenAPI).</span></li>
           <li><span class="dot"></span><span>Plan de pruebas, suites automatizadas, informes de cobertura.</span></li>
-          <li><span class="dot"></span><span>ADRs (Architecture Decision Records).</span></li>
+          <li><span class="dot"></span><span>ADRs (Architecture Decision Records) y guía de estilos.</span></li>
         </ul>
       </article>
     </section>
 
-    <!-- ========================= ARQUITECTURA / CALIDAD ========================= -->
+    <!-- ARQUITECTURA / CALIDAD -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Arquitectura y diseño</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-building-2-line"></i> Arquitectura y diseño</h2>
+        <p>Estructura, componentes y decisiones de alto nivel que satisfacen requisitos y atributos de calidad.</p>
         <ul class="clean">
           <li><span class="dot"></span><span><strong>Estilos</strong>: cliente-servidor, multicapa, eventos, microservicios, SOA, data-centric, serverless.</span></li>
           <li><span class="dot"></span><span><strong>Patrones</strong>: MVC/MVVM, inyección de dependencias, repositorio, CQRS, saga, circuit-breaker.</span></li>
-          <li><span class="dot"></span><span><strong>Decisiones</strong>: escalabilidad, CAP, almacenamiento, mensajería, cache.</span></li>
-          <li><span class="dot"></span><span><strong>Evaluación</strong>: escenarios de calidad, ATAM, prototipos de arquitectura.</span></li>
+          <li><span class="dot"></span><span><strong>Decisiones</strong>: escalabilidad (horizontal/vertical), consistencia (CAP), almacenamiento, mensajería, caché.</span></li>
+          <li><span class="dot"></span><span><strong>Evaluación</strong>: escenarios de atributos, ATAM, prototipos de arquitectura.</span></li>
         </ul>
-        <div class="chips"><span class="chip">Disponibilidad</span><span class="chip">Rendimiento</span><span class="chip">Seguridad</span><span class="chip">Observabilidad</span><span class="chip">Costo</span></div>
+        <div class="chips">
+          <span class="chip"><i class="ri-broadcast-line"></i> Disponibilidad</span>
+          <span class="chip"><i class="ri-speed-up-line"></i> Rendimiento</span>
+          <span class="chip"><i class="ri-lock-2-line"></i> Seguridad</span>
+          <span class="chip"><i class="ri-pulse-line"></i> Observabilidad</span>
+          <span class="chip"><i class="ri-money-dollar-circle-line"></i> Costo</span>
+        </div>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Calidad (ISO/IEC 25010)</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-star-smile-line"></i> Calidad (ISO/IEC 25010)</h2>
         <ul class="clean">
-          <li><span class="dot"></span><span><strong>Adecuación funcional</strong>, exactitud.</span></li>
+          <li><span class="dot"></span><span><strong>Adecuación funcional</strong> y exactitud.</span></li>
           <li><span class="dot"></span><span><strong>Eficiencia de desempeño</strong> (latencia, throughput, consumo).</span></li>
           <li><span class="dot"></span><span><strong>Compatibilidad</strong> e interoperabilidad.</span></li>
           <li><span class="dot"></span><span><strong>Usabilidad</strong> y accesibilidad.</span></li>
           <li><span class="dot"></span><span><strong>Fiabilidad</strong> y tolerancia a fallos.</span></li>
-          <li><span class="dot"></span><span><strong>Seguridad</strong>: CIA, autenticación, trazabilidad.</span></li>
-          <li><span class="dot"></span><span><strong>Mantenibilidad</strong>: modularidad, reusabilidad, analizabilidad, probabilidad de pruebas.</span></li>
-          <li><span class="dot"></span><span><strong>Portabilidad</strong>: adaptabilidad, instalabilidad, sustituibilidad.</span></li>
+          <li><span class="dot"></span><span><strong>Seguridad</strong> (CIAA + trazabilidad).</span></li>
+          <li><span class="dot"></span><span><strong>Mantenibilidad</strong> (modularidad, reusabilidad, testabilidad).</span></li>
+          <li><span class="dot"></span><span><strong>Portabilidad</strong> (adaptabilidad, instalabilidad, sustituibilidad).</span></li>
         </ul>
       </article>
     </section>
 
-    <!-- ========================= CONSTRUCCIÓN / PRUEBAS ========================= -->
+    <!-- CONSTRUCCIÓN / PRUEBAS -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Construcción</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-braces-line"></i> Construcción</h2>
         <ul class="clean">
           <li><span class="dot"></span><span>Guías de codificación, revisión por pares y control de complejidad.</span></li>
-          <li><span class="dot"></span><span>Análisis estático (linters, SAST), escaneo de dependencias y licencias.</span></li>
+          <li><span class="dot"></span><span>Análisis estático (linters, SAST) y escaneo de dependencias/licencias.</span></li>
           <li><span class="dot"></span><span>Empaquetado, versionado semántico y firma de releases.</span></li>
           <li><span class="dot"></span><span>Seguridad por diseño y defensa en profundidad.</span></li>
         </ul>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Estrategia de pruebas</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-test-tube-line"></i> Estrategia de pruebas</h2>
+        <p class="muted">Pirámide con cobertura razonable y foco en riesgo.</p>
         <ul class="clean">
-          <li><span class="dot"></span><span>Unidad y componentes (rápidas, aisladas).</span></li>
-          <li><span class="dot"></span><span>Integración (contratos, APIs, datos, colas).</span></li>
-          <li><span class="dot"></span><span>E2E y aceptación.</span></li>
-          <li><span class="dot"></span><span>No funcionales: rendimiento, seguridad, accesibilidad, resiliencia.</span></li>
-          <li><span class="dot"></span><span>Enfoques: TDD/BDD, gestión de datos de prueba, ambientes efímeros.</span></li>
+          <li><span class="dot"></span><span><strong>Unidad</strong> y <strong>componentes</strong> (rápidas, aisladas).</span></li>
+          <li><span class="dot"></span><span><strong>Integración</strong> (contratos, APIs, datos, colas).</span></li>
+          <li><span class="dot"></span><span><strong>E2E</strong> y aceptación.</span></li>
+          <li><span class="dot"></span><span><strong>No funcionales</strong>: rendimiento, seguridad, accesibilidad, resiliencia.</span></li>
+          <li><span class="dot"></span><span>TDD/BDD, gestión de datos de prueba, ambientes efímeros.</span></li>
         </ul>
       </article>
     </section>
 
-    <!-- ========================= DEVOPS / SRE ========================= -->
+    <!-- DEVOPS / MÉTRICAS con barras animadas -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>CI/CD y entrega</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-infinity-line"></i> CI/CD y entrega</h2>
         <ul class="clean">
-          <li><span class="dot"></span><span>Pipeline: build → pruebas → análisis → empaquetado → despliegue → validación.</span></li>
+          <li><span class="dot"></span><span>Pipeline: build → pruebas → análisis → empaquetado → despliegue → verificación.</span></li>
           <li><span class="dot"></span><span>Estrategias: blue-green, canary, feature flags, rollback rápido.</span></li>
-          <li><span class="dot"></span><span>Infraestructura como código, contenedores y orquestación.</span></li>
+          <li><span class="dot"></span><span>IaC, entornos reproducibles, contenedores y orquestación.</span></li>
           <li><span class="dot"></span><span>Observabilidad: métricas, logs y trazas distribuidas.</span></li>
         </ul>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Operación y SRE</h2>
-        <ul class="clean">
-          <li><span class="dot"></span><span>SLIs/SLOs y presupuestos de error.</span></li>
-          <li><span class="dot"></span><span>Gestión de incidentes, post-mortems sin culpables.</span></li>
-          <li><span class="dot"></span><span>Capacidad y resiliencia: autoescalado, tolerancia a fallos, pruebas de caos.</span></li>
-        </ul>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-pie-chart-2-line"></i> Métricas (ejemplo)</h2>
+        <div class="meters">
+          <div class="meter" data-value="86">
+            <div class="label"><i class="ri-shield-star-line"></i> Cobertura de pruebas <small>(objetivo ≥ 80%)</small></div>
+            <div class="bar"><div class="fill"></div></div>
+          </div>
+          <div class="meter" data-value="92">
+            <div class="label"><i class="ri-instance-line"></i> Éxito de despliegues <small>(rolling 30d)</small></div>
+            <div class="bar"><div class="fill"></div></div>
+          </div>
+          <div class="meter" data-value="70">
+            <div class="label"><i class="ri-timer-line"></i> Lead time <small>(percentil objetivo)</small></div>
+            <div class="bar"><div class="fill"></div></div>
+          </div>
+        </div>
       </article>
     </section>
 
-    <!-- ========================= CONFIGURACIÓN / MÉTRICAS ========================= -->
+    <!-- SEGURIDAD / CUMPLIMIENTO -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Gestión de la configuración</h2>
-        <ul class="clean">
-          <li><span class="dot"></span><span>Control de versiones con flujos Git (trunk-based o GitFlow) y revisiones obligatorias.</span></li>
-          <li><span class="dot"></span><span>Gestión de artefactos (binarios, contenedores) y trazabilidad de releases.</span></li>
-          <li><span class="dot"></span><span>Infraestructura declarativa y parámetros externalizados (12-factor).</span></li>
-        </ul>
-      </article>
-
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Métricas de proceso y producto</h2>
-        <ul class="clean">
-          <li><span class="dot"></span><span>Métricas de entrega (DORA): tiempo de cambio, frecuencia de despliegue, tasa de fallas, MTTR.</span></li>
-          <li><span class="dot"></span><span>Calidad del código: cobertura, defectos/KLOC, mantenibilidad, code smells.</span></li>
-          <li><span class="dot"></span><span>Experiencia del usuario: tiempos p95/p99, error rate, NPS/CSAT.</span></li>
-        </ul>
-      </article>
-    </section>
-
-    <!-- ========================= SEGURIDAD / CUMPLIMIENTO ========================= -->
-    <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Seguridad</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-shield-keyhole-line"></i> Seguridad</h2>
         <ul class="clean">
           <li><span class="dot"></span><span>Modelado de amenazas (STRIDE) y requisitos de seguridad desde el inicio.</span></li>
-          <li><span class="dot"></span><span>Pruebas: SAST/DAST, SBOM, pentesting orientado a riesgo.</span></li>
-          <li><span class="dot"></span><span>Gestión de secretos y mínimo privilegio; MFA.</span></li>
+          <li><span class="dot"></span><span>Pruebas: SAST/DAST, SBOM y pentesting orientado a riesgo.</span></li>
+          <li><span class="dot"></span><span>Gestión de secretos y principio de menor privilegio; MFA.</span></li>
           <li><span class="dot"></span><span>Buenas prácticas frente a vulnerabilidades (OWASP Top 10).</span></li>
         </ul>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Cumplimiento y ética</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-scales-3-line"></i> Cumplimiento y ética</h2>
         <ul class="clean">
           <li><span class="dot"></span><span>Privacidad y protección de datos; retención y minimización.</span></li>
           <li><span class="dot"></span><span>Licencias de software, cumplimiento de terceros y uso responsable de IA.</span></li>
@@ -408,162 +380,126 @@
       </article>
     </section>
 
-    <!-- ========================= CASO / COMPARATIVA ========================= -->
+    <!-- DOCUMENTACIÓN / ROLES -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 7;">
-        <h2>Caso resumido: aplicación de reservas</h2>
-        <p>Objetivo: lanzar una app de reservas para un campus. Requisitos: disponibilidad en tiempo real, pagos, notificaciones, accesibilidad AA.</p>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-book-marked-line"></i> Documentación viva</h2>
         <ul class="clean">
-          <li><span class="dot"></span><span><strong>Discovery</strong>: mapas de experiencia, historias, criterios por rol.</span></li>
-          <li><span class="dot"></span><span><strong>Arquitectura</strong>: microservicios + gateway, SQL + caché, colas de eventos.</span></li>
-          <li><span class="dot"></span><span><strong>Calidad</strong>: cobertura ≥70%, tests de contrato, SAST/DAST.</span></li>
-          <li><span class="dot"></span><span><strong>Entrega</strong>: CI/CD, despliegue canario, métricas DORA.</span></li>
-          <li><span class="dot"></span><span><strong>Operación</strong>: SLO 99.9%, presupuesto de error, post-mortems.</span></li>
+          <li><span class="dot"></span><span><strong>Docs-as-code</strong>: versionadas junto al código y revisadas por pares.</span></li>
+          <li><span class="dot"></span><span>Catálogo de APIs, guías de ejecución, runbooks y playbooks.</span></li>
+          <li><span class="dot"></span><span>ADRs para decisiones clave y criterios de reversibilidad.</span></li>
+          <li><span class="dot"></span><span>Lenguaje ubicuo y modelos de dominio consistentes.</span></li>
         </ul>
       </article>
 
-      <article class="card reveal" style="grid-column: span 5;">
-        <h2>Comparativa de enfoques</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-team-line"></i> Roles y colaboración</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span>Analista/PO, Arquitectura, Desarrollo, QA, DevOps/SRE, Seguridad, Gestión.</span></li>
+          <li><span class="dot"></span><span>Definición de listo/hecho, estándares y acuerdos de trabajo.</span></li>
+          <li><span class="dot"></span><span>Colaboración con legal, negocio y soporte.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- CASO Y COMPARATIVA -->
+    <section class="grid">
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-apps-2-line"></i> Caso resumido: aplicación de reservas</h2>
+        <p>Objetivo: lanzar una app de reservas para un campus. Requisitos: disponibilidad en tiempo real, pagos, notificaciones y accesibilidad AA.</p>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Discovery</strong>: mapas de experiencia, historias por rol y criterios de aceptación.</span></li>
+          <li><span class="dot"></span><span><strong>Arquitectura</strong>: microservicios + API gateway, base relacional + caché, colas de eventos.</span></li>
+          <li><span class="dot"></span><span><strong>Calidad</strong>: ≥70% cobertura, tests de contrato, escaneo SAST/DAST.</span></li>
+          <li><span class="dot"></span><span><strong>Entrega</strong>: CI/CD con despliegue canario y métricas DORA.</span></li>
+          <li><span class="dot"></span><span><strong>Operación</strong>: SLO 99.9%, presupuesto de error mensual y post-mortems.</span></li>
+        </ul>
+      </article>
+
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-contrast-drop-2-line"></i> Comparativa de enfoques</h2>
         <table>
           <thead><tr><th>Enfoque</th><th>Ventajas</th><th>Riesgos</th></tr></thead>
           <tbody>
-            <tr><td>Cascada/V</td><td>Trazabilidad clara; apto para regulación.</td><td>Poca adaptabilidad al cambio.</td></tr>
-            <tr><td>Iterativo</td><td>Aprendizaje progresivo; entregas frecuentes.</td><td>Requiere control de alcance.</td></tr>
-            <tr><td>Ágil</td><td>Feedback rápido; foco en valor.</td><td>Deuda si se descuida arquitectura.</td></tr>
-            <tr><td>DevOps</td><td>Automatización; calidad en origen.</td><td>Curva cultural y de herramientas.</td></tr>
+            <tr><td>Cascada/V</td><td>Trazabilidad clara, apto para regulación.</td><td>Poca adaptabilidad al cambio.</td></tr>
+            <tr><td>Iterativo</td><td>Aprendizaje progresivo, entregas frecuentes.</td><td>Requiere control de alcance.</td></tr>
+            <tr><td>Ágil</td><td>Feedback rápido, foco en valor.</td><td>Deuda si se descuida arquitectura.</td></tr>
+            <tr><td>DevOps</td><td>Automatización y calidad en origen.</td><td>Curva cultural/herramientas.</td></tr>
           </tbody>
         </table>
       </article>
     </section>
 
-    <!-- ========================= REFERENCIAS ========================= -->
+    <!-- RIESGOS / GLOSARIO -->
     <section class="grid">
-      <article class="card reveal" style="grid-column: span 12;">
-        <h2>Referencias clave</h2>
+      <article class="card reveal animate__animated" style="grid-column: span 7;">
+        <h2><i class="ri-alert-line"></i> Gestión de riesgos</h2>
         <ul class="clean">
-          <li><span class="dot"></span><span>IEEE Computer Society — SWEBOK.</span></li>
-          <li><span class="dot"></span><span>ISO/IEC/IEEE 12207 — Procesos del ciclo de vida del software.</span></li>
-          <li><span class="dot"></span><span>ISO/IEC 25010 — Modelo de calidad del producto.</span></li>
-          <li><span class="dot"></span><span>ISO/IEC/IEEE 29148 — Ingeniería de requisitos.</span></li>
-          <li><span class="dot"></span><span>ISO/IEC/IEEE 15288 — Ciclo de vida de sistemas.</span></li>
-          <li><span class="dot"></span><span>OWASP — Seguridad de aplicaciones.</span></li>
-          <li><span class="dot"></span><span>Manifiesto Ágil — valores y principios.</span></li>
+          <li><span class="dot"></span><span>Identificación: técnicos, organizacionales, regulatorios, de terceros y operativos.</span></li>
+          <li><span class="dot"></span><span>Priorización (probabilidad × impacto), planes de respuesta y contingencia.</span></li>
+          <li><span class="dot"></span><span>Seguimiento continuo y aprendizaje post-incidente.</span></li>
+        </ul>
+      </article>
+
+      <article class="card reveal animate__animated" style="grid-column: span 5;">
+        <h2><i class="ri-book-2-line"></i> Glosario mínimo</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>V&V</strong>: verificación y validación.</span></li>
+          <li><span class="dot"></span><span><strong>CI/CD</strong>: integración y despliegue continuos.</span></li>
+          <li><span class="dot"></span><span><strong>SLI/SLO</strong>: indicador/objetivo de nivel de servicio.</span></li>
+          <li><span class="dot"></span><span><strong>ADR</strong>: registro de decisiones de arquitectura.</span></li>
+          <li><span class="dot"></span><span><strong>SBOM</strong>: lista de materiales de software.</span></li>
         </ul>
       </article>
     </section>
 
-    <footer class="card reveal" style="margin-top:18px;">
+    <!-- REFERENCIAS -->
+    <section class="card reveal animate__animated" style="grid-column:1/-1;">
+      <h2><i class="ri-links-line"></i> Referencias clave</h2>
+      <ul class="clean">
+        <li><span class="dot"></span><span>IEEE Computer Society — SWEBOK (Software Engineering Body of Knowledge).</span></li>
+        <li><span class="dot"></span><span>ISO/IEC/IEEE 12207 — Procesos del ciclo de vida del software.</span></li>
+        <li><span class="dot"></span><span>ISO/IEC 25010 — Modelo de calidad del producto de software.</span></li>
+        <li><span class="dot"></span><span>ISO/IEC/IEEE 29148 — Ingeniería de requisitos.</span></li>
+        <li><span class="dot"></span><span>ISO/IEC/IEEE 15288 — Ciclo de vida de sistemas.</span></li>
+        <li><span class="dot"></span><span>OWASP — Buenas prácticas de seguridad de aplicaciones.</span></li>
+        <li><span class="dot"></span><span>Manifiesto Ágil — Valores y principios.</span></li>
+      </ul>
+    </section>
+
+    <footer class="card" style="margin-top:18px">
       <p>Electiva I — Introducción a la Ingeniería del Software (S10A · S10B). Documento de referencia.</p>
     </footer>
   </main>
 
-  <!-- Anime.js (animaciones programáticas) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
-          integrity="sha512-4PpNQnq0fJY4N1fC/2q9S4Q4f2h3f7bRk2lT1m8Jm7H8r8w0SgqN3gSyS0bq0vWJx8cF2hK1GvTzF1m8o8H2Dg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
   <script>
-    // Respetar usuarios con reduce motion
-    const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* Revelado de tarjetas con IntersectionObserver + anime.js */
+    // ====== Reveal on scroll (animate.css) ======
+    const reveals = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
-          const el = e.target;
-          el.style.opacity = 1;
-          anime({
-            targets: el,
-            translateY: [10,0],
-            opacity: [0,1],
-            duration: 700,
-            easing: 'easeOutCubic'
-          });
-          io.unobserve(el);
+          e.target.classList.add('animate__fadeInUp');
+          io.unobserve(e.target);
         }
-      });
-    }, { threshold: .12 });
+      })
+    },{threshold:.12});
+    reveals.forEach(el=>io.observe(el));
 
-    document.querySelectorAll('.reveal, .fig').forEach(el=>{
-      if(!REDUCED) io.observe(el); else { el.style.opacity = 1; el.style.transform = 'none'; }
+    // ====== Anime.js: brillo del título ======
+    anime({
+      targets:'#titleGlow',
+      textShadow:[
+        '0 0 0 rgba(96,165,250,0)',
+        '0 0 12px rgba(96,165,250,.45), 0 0 36px rgba(37,99,235,.35)'
+      ],
+      duration:2200, easing:'easeInOutQuad', direction:'alternate', loop:3
     });
 
-    /* Pulso suave de los bullets .dot */
-    if(!REDUCED){
-      anime({
-        targets: '.dot',
-        scale: [{value:1.0},{value:1.22},{value:1.0}],
-        duration: 1600,
-        delay: anime.stagger(60),
-        easing: 'easeInOutSine',
-        loop: true
-      });
-    }
-
-    /* Fondo animado en el hero: nodos que se mueven lentamente */
-    (function(){
-      if(REDUCED) return;
-      const svg = document.getElementById('hero-canvas');
-      const g = document.getElementById('nodes');
-      const W = 1200, H = 400, N = 18;
-
-      // Crear círculos y líneas
-      const pts = [];
-      for(let i=0;i<N;i++){
-        const x = Math.random()*W, y = Math.random()*H, r = 3+Math.random()*3;
-        const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
-        c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',r);
-        c.setAttribute('fill','url(#grad)');
-        c.setAttribute('opacity', 0.9);
-        g.appendChild(c);
-        pts.push({el:c, x, y, r});
-      }
-      // Algunas líneas
-      for(let i=0;i<N-1;i++){
-        const l = document.createElementNS('http://www.w3.org/2000/svg','line');
-        l.setAttribute('x1', pts[i].x); l.setAttribute('y1', pts[i].y);
-        l.setAttribute('x2', pts[i+1].x); l.setAttribute('y2', pts[i+1].y);
-        l.setAttribute('stroke','url(#grad)'); l.setAttribute('stroke-opacity','0.35');
-        g.appendChild(l);
-        // animar sutilmente las líneas
-        anime({ targets:l, strokeOpacity:[0.15,0.45], direction:'alternate', easing:'easeInOutSine', duration:2800, delay:i*120, loop:true });
-      }
-      // Movimiento suave de puntos
-      pts.forEach((p,i)=>{
-        anime({
-          targets: p.el,
-          cx: ()=> p.x + (Math.random()*80-40),
-          cy: ()=> p.y + (Math.random()*40-20),
-          r:  ()=> p.r + (Math.random()*2-1),
-          direction: 'alternate',
-          easing: 'easeInOutSine',
-          duration: 3500 + Math.random()*2000,
-          delay: i*90,
-          loop: true
-        });
-      });
-    })();
-
-    /* Progreso de lectura */
-    const progress = document.getElementById('progress');
-    const onScroll = ()=>{
-      const h = document.documentElement;
-      const scrolled = (h.scrollTop)/(h.scrollHeight - h.clientHeight);
-      progress.style.width = (scrolled*100).toFixed(2) + '%';
-    };
-    document.addEventListener('scroll', onScroll, {passive:true});
-    onScroll();
-
-    /* Pequeño efecto hover en .proc con anime.js (rebote ligero) */
-    document.querySelectorAll('.proc').forEach(p=>{
-      p.addEventListener('mouseenter', ()=>{
-        if(REDUCED) return;
-        anime({targets:p, scale: 1.04, duration: 220, easing:'easeOutQuad'});
-      });
-      p.addEventListener('mouseleave', ()=>{
-        if(REDUCED) return;
-        anime({targets:p, scale: 1.00, duration: 220, easing:'easeOutQuad'});
-      });
+    // ====== Anime.js: barras de métricas ======
+    document.querySelectorAll('.meter').forEach(m=>{
+      const v = +m.dataset.value || 0;
+      const fill = m.querySelector('.fill');
+      anime({targets:fill, width: v + '%', duration:1400, delay:300, easing:'easeOutCubic'});
     });
   </script>
 </body>
