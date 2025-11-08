@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Infografía | Tema 01: Introducción a la Ingeniería del Software</title>
+  <meta name="description" content="Infografía educativa: Tema 01 - Introducción a la Ingeniería del Software. Contenido ampliado y secciones técnicas." />
+  <style>
+    /* ===========================================================
+       RESETEO Y VARIABLES DE TEMA
+       =========================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --bg: #0b1220;       --panel: #0f172a;    --paper: #0b1220;
+      --text: #e5e7eb;     --muted: #94a3b8;    --primary: #2563eb;
+      --primary-2: #60a5fa;--accent: #22c55e;   --warning: #f59e0b;
+      --danger: #ef4444;   --card: #111827;     --ring: rgba(37,99,235,.35);
+      --shadow: 0 10px 30px rgba(2,6,23,.55);   --radius: 18px;
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 1200px at 80% -10%, rgba(37,99,235,.15), transparent 60%),
+        radial-gradient(800px 800px at 10% 110%, rgba(34,197,94,.10), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* CONTENEDOR */
+    .sheet { width: min(100%, 1000px); margin: 24px auto 80px; padding: 28px; border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      box-shadow: var(--shadow); outline: 1px solid rgba(148,163,184,.12); }
+
+    header.hero { position: relative; border-radius: calc(var(--radius) + 6px); padding: clamp(20px, 4vw, 36px);
+      background: linear-gradient(135deg, rgba(37,99,235,.50), rgba(15,23,42,.85) 45%, rgba(34,197,94,.35)); overflow: hidden; }
+    .hero h1 { margin: 0 0 6px; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: .2px; }
+    .hero p { margin: 0; color: var(--muted); }
+    .badge { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; background: rgba(2,6,23,.55);
+      border: 1px solid rgba(148,163,184,.18); color: #cbd5e1; padding: 6px 12px; border-radius: 999px; font-size: 13px; letter-spacing: .2px;
+      backdrop-filter: saturate(140%) blur(4px); }
+    .idline { margin-top: 10px; display: inline-flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .id { background: rgba(148,163,184,.10); border: 1px solid rgba(148,163,184,.25); color: #e2e8f0; padding: 6px 10px; border-radius: 999px; font-size: 13px; }
+
+    /* GRILLA */
+    .grid { display: grid; gap: 18px; margin-top: 22px; grid-template-columns: repeat(12, 1fr); }
+    .card { position: relative; display: flow-root; background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      border: 1px solid rgba(148,163,184,.12); border-radius: var(--radius); padding: 18px; overflow: hidden; }
+    .card h2 { margin: 0 0 8px; font-size: clamp(18px, 2.2vw, 24px); }
+    .card p { margin: 8px 0 0; color: #d1d5db; }
+    .muted { color: var(--muted); }
+
+    /* LISTAS Y CHIPS */
+    ul.clean { list-style: none; margin: 8px 0 0; padding: 0; }
+    ul.clean li { margin: 6px 0; display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: flex-start; }
+    .dot { width: 10px; height: 10px; margin-top: 7px; border-radius: 50%; background: var(--primary-2);
+      box-shadow: 0 0 0 2px rgba(96,165,250,.35), 0 0 12px rgba(96,165,250,.45); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .chip { font-size: 13px; padding: 6px 10px; border-radius: 999px; background: rgba(148,163,184,.12); border: 1px solid rgba(148,163,184,.20); }
+    .chip.kpi { background: rgba(34,197,94,.12); border-color: rgba(34,197,94,.25); color: #bbf7d0; }
+
+    /* PROCESOS 12207: evita desbordes y choques */
+    .processes { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; width: 100%; }
+    .proc { padding: 10px; border-radius: 12px; text-align: center; background: rgba(2,6,23,.45); border: 1px dashed rgba(148,163,184,.30);
+      word-break: break-word; hyphens: auto; }
+
+    /* TABLAS COMPARATIVAS */
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td { border: 1px solid rgba(148,163,184,.18); padding: 10px; text-align: left; }
+    th { background: rgba(148,163,184,.10); }
+
+    a { color: #93c5fd; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* RESPONSIVO */
+    @media (max-width: 960px) { .grid { grid-template-columns: repeat(6, 1fr); } }
+    @media (max-width: 560px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* IMPRESIÓN */
+    @media print {
+      :root { --bg: #ffffff; --paper: #ffffff; --text: #111827; --muted: #334155; --card: #ffffff; }
+      body { background: #ffffff; color: var(--text); }
+      .sheet { width: 210mm; margin: 0 auto; padding: 12mm; box-shadow: none; outline: none; }
+      .hero { background: linear-gradient(135deg, #e0ecff, #f1f5f9); color: #0f172a; }
+      a { color: #1d4ed8; text-decoration: none; }
+      .chip.kpi { color: #14532d; }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <header class="hero">
+      <span class="badge">Electiva I · Introducción a la Ingeniería del Software · S10A y S10B</span>
+      <h1>Tema 01 · Introducción a la Ingeniería del Software</h1>
+      <p class="muted">Infografía de referencia. Contenido ampliado y organizado por secciones.</p>
+      <div class="idline">
+        <span class="id">Carlos David Isturiz</span>
+        <span class="id">Cédula: V32.267.582</span>
+      </div>
+    </header>
+
+    <!-- ========================= CONCEPTOS BÁSICOS ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Definición y alcance</h2>
+        <p>Disciplina que aplica principios de ingeniería al <strong>desarrollo, operación y mantenimiento</strong> de sistemas de software de forma <em>sistemática, disciplinada y cuantificable</em>. Abarca métodos, procesos, herramientas, estándares y roles que permiten construir software <strong>útil, confiable, seguro, mantenible y sostenible</strong> en el tiempo.</p>
+        <ul class="clean">
+          <li><span class="dot"></span><span>Enfoque sobre <strong>ciclo de vida completo</strong>: concepción, requisitos, arquitectura, construcción, verificación/validación, despliegue, operación, evolución y retiro.</span></li>
+          <li><span class="dot"></span><span><strong>Base de conocimiento</strong>: SWEBOK (IEEE) y normas ISO/IEC/IEEE (p.e., 12207, 25010, 29148, 15288).</span></li>
+          <li><span class="dot"></span><span><strong>Resultados esperados</strong>: calidad del producto, previsibilidad del proceso, reducción de riesgo y costo total de propiedad (TCO).</span></li>
+        </ul>
+        <div class="chips">
+          <span class="chip kpi">Utilidad</span>
+          <span class="chip kpi">Fiabilidad</span>
+          <span class="chip">Mantenibilidad</span>
+          <span class="chip">Escalabilidad</span>
+          <span class="chip">Sostenibilidad</span>
+        </div>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Historia y contexto</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Crisis del software (años 60‑70)</strong>: sobrecostes, retrasos y fallos; surge la necesidad de procesos formales y disciplina de ingeniería.</span></li>
+          <li><span class="dot"></span><span><strong>Normalización</strong>: aparición de estándares de ciclo de vida, calidad y requisitos; consolidación del SWEBOK.</span></li>
+          <li><span class="dot"></span><span><strong>Transición ágil‑DevOps</strong>: de ciclos largos a entrega continua, énfasis en colaboración y automatización.</span></li>
+          <li><span class="dot"></span><span><strong>Era de la nube e IA</strong>: arquitecturas distribuidas, datos a escala y nuevos retos de seguridad, ética y gobernanza.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= CICLO DE VIDA 12207 ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Ciclo de vida (ISO/IEC/IEEE 12207)</h2>
+        <p class="muted">Marco de procesos aplicable a múltiples modelos (secuencial, incremental, iterativo, ágil). Clasifica procesos primarios, de soporte y organizacionales.</p>
+        <div class="processes" aria-label="Procesos de ciclo de vida">
+          <div class="proc">Adquisición</div>
+          <div class="proc">Suministro</div>
+          <div class="proc">Desarrollo</div>
+          <div class="proc">Operación</div>
+          <div class="proc">Mantenimiento</div>
+          <div class="proc">Retiro</div>
+          <div class="proc">Gestión de proyectos</div>
+          <div class="proc">Gestión de la configuración</div>
+          <div class="proc">Verificación</div>
+          <div class="proc">Validación</div>
+          <div class="proc">Aseguramiento de la calidad</div>
+          <div class="proc">Medición y mejora</div>
+        </div>
+        <p>Planificación, estimación, gestión de riesgos, control de cambios, garantía de calidad, auditorías, revisión técnica, aceptación y transición a operación, además de <strong>retirada controlada</strong> y preservación de datos.</p>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Modelos y enfoques</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Cascada/V</strong>: entornos regulados y requisitos estables; énfasis en trazabilidad y V&V por fases.</span></li>
+          <li><span class="dot"></span><span><strong>Incremental/Iterativo</strong>: entregas parciales, aprendizaje progresivo y retroalimentación temprana.</span></li>
+          <li><span class="dot"></span><span><strong>Ágil (Scrum/Kanban/XP)</strong>: valor temprano, adaptabilidad, inspección y mejora continua.</span></li>
+          <li><span class="dot"></span><span><strong>Lean/DevOps</strong>: flujo, calidad en origen, automatización, despliegue frecuente, observabilidad.</span></li>
+        </ul>
+        <div class="chips">
+          <span class="chip">Sprints</span>
+          <span class="chip">Backlog</span>
+          <span class="chip">CI/CD</span>
+          <span class="chip">Entrega continua</span>
+          <span class="chip">Observabilidad</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- ========================= STAKEHOLDERS & DOMINIOS ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Stakeholders y dominios</h2>
+        <p>Los proyectos de software involucran a múltiples partes interesadas con objetivos y restricciones diferentes.</p>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Usuarios finales</strong>: necesidades, usabilidad, accesibilidad, privacidad.</span></li>
+          <li><span class="dot"></span><span><strong>Negocio</strong>: valor, ROI, tiempo al mercado, riesgo.</span></li>
+          <li><span class="dot"></span><span><strong>Operaciones</strong>: confiabilidad, SLOs, costes de operación.</span></li>
+          <li><span class="dot"></span><span><strong>Compliance</strong>: regulación sectorial (finanzas, salud, gobierno), auditorías.</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Gobernanza de producto</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span>Visión, roadmap, priorización por impacto y coste (ICE/RICE).</span></li>
+          <li><span class="dot"></span><span>Gestión de dependencias, definición de <em>Definition of Ready</em> / <em>Done</em>.</span></li>
+          <li><span class="dot"></span><span>Rituales: discovery continuo, demos, retrospectivas accionables.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= REQUISITOS & ARTEFACTOS ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Requisitos (ISO/IEC/IEEE 29148)</h2>
+        <p>Definen <strong>qué</strong> debe lograr el sistema y las restricciones. Se clasifican en <em>funcionales</em> y <em>no funcionales</em> (calidad, rendimiento, seguridad, compatibilidad, usabilidad, mantenibilidad, portabilidad; ver ISO/IEC 25010).</p>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Elicitación</strong>: entrevistas, talleres, observación, prototipos, análisis de procesos, minería de datos.</span></li>
+          <li><span class="dot"></span><span><strong>Especificación</strong>: historias de usuario con criterios de aceptación, casos de uso, escenarios, reglas de negocio, modelos de dominio.</span></li>
+          <li><span class="dot"></span><span><strong>Calidad de requisitos</strong>: claros, completos, consistentes, verificables, rastreables, sin ambigüedad.</span></li>
+          <li><span class="dot"></span><span><strong>Antipatrones</strong>: soluciones disfrazadas, «etc.»/«y similares», términos vagos, mezcla de requisitos y diseño.</span></li>
+          <li><span class="dot"></span><span><strong>Trazabilidad</strong>: matriz Req→Diseño→Pruebas→Release para controlar cambios y cumplimiento.</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Artefactos típicos</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span>Backlog de producto, épicas, historias y criterios de aceptación.</span></li>
+          <li><span class="dot"></span><span>Especificación de requisitos / documento de visión y alcance.</span></li>
+          <li><span class="dot"></span><span>Modelos UML/DFD, diccionario de datos, catálogo de APIs (OpenAPI).</span></li>
+          <li><span class="dot"></span><span>Plan de pruebas, suites automatizadas, informes de cobertura.</span></li>
+          <li><span class="dot"></span><span>ADRs (Architecture Decision Records) y guía de estilos.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= ARQUITECTURA & DISEÑO ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Arquitectura y diseño</h2>
+        <p>Estructura, componentes, relaciones y decisiones de alto nivel que satisfacen requisitos y atributos de calidad (ISO/IEC 25010).</p>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Estilos</strong>: cliente-servidor, multicapa, eventos, microservicios, SOA, orientado a datos, serverless.</span></li>
+          <li><span class="dot"></span><span><strong>Patrones</strong>: MVC/MVVM, inyección de dependencias, repositorio, CQRS, saga, circuit‑breaker.</span></li>
+          <li><span class="dot"></span><span><strong>Decisiones</strong>: escalabilidad (horizontal/vertical), consistencia (CAP), almacenamiento, mensajería, caching.</span></li>
+          <li><span class="dot"></span><span><strong>Evaluación</strong>: escenarios de atributos de calidad, ATAM, prototipos de arquitectura.</span></li>
+        </ul>
+        <div class="chips">
+          <span class="chip">Disponibilidad</span>
+          <span class="chip">Rendimiento</span>
+          <span class="chip">Seguridad</span>
+          <span class="chip">Observabilidad</span>
+          <span class="chip">Costo</span>
+        </div>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Calidad (ISO/IEC 25010)</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Adecuación funcional</strong> y exactitud.</span></li>
+          <li><span class="dot"></span><span><strong>Eficiencia de desempeño</strong> (latencia, throughput, consumo).</span></li>
+          <li><span class="dot"></span><span><strong>Compatibilidad</strong> e interoperabilidad.</span></li>
+          <li><span class="dot"></span><span><strong>Usabilidad</strong> y accesibilidad.</span></li>
+          <li><span class="dot"></span><span><strong>Fiabilidad</strong> y tolerancia a fallos.</span></li>
+          <li><span class="dot"></span><span><strong>Seguridad</strong> (confidencialidad, integridad, disponibilidad, autenticación, trazabilidad).</span></li>
+          <li><span class="dot"></span><span><strong>Mantenibilidad</strong> (analizabilidad, modificabilidad, modularidad, reusabilidad, probabilidad de pruebas).</span></li>
+          <li><span class="dot"></span><span><strong>Portabilidad</strong> (adaptabilidad, instalabilidad, sustituibilidad).</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= CONSTRUCCIÓN & PRUEBAS ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Construcción</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Guías de codificación</strong>, revisión por pares y control de complejidad.</span></li>
+          <li><span class="dot"></span><span><strong>Análisis estático</strong> (linters, SAST), escaneo de dependencias y licencias.</span></li>
+          <li><span class="dot"></span><span><strong>Empaquetado</strong> de artefactos, versionado semántico y firma de releases.</span></li>
+          <li><span class="dot"></span><span><strong>Seguridad por diseño</strong> y defensa en profundidad.</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Estrategia de pruebas</h2>
+        <p class="muted">Pirámide de pruebas con cobertura razonable y foco en riesgo.</p>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Unidad</strong> y <strong>componentes</strong> (rápidas, aisladas).</span></li>
+          <li><span class="dot"></span><span><strong>Integración</strong> (contratos, APIs, datos, colas).</span></li>
+          <li><span class="dot"></span><span><strong>Extremo a extremo</strong> y aceptación.</span></li>
+          <li><span class="dot"></span><span><strong>No funcionales</strong>: rendimiento, seguridad, accesibilidad, resiliencia.</span></li>
+          <li><span class="dot"></span><span>Enfoques: TDD/BDD, gestión de datos de prueba, ambientes efímeros.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= DEVOPS & OPERACIONES ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>CI/CD y entrega</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Pipeline</strong>: build → pruebas → análisis → empaquetado → despliegue → validación.</span></li>
+          <li><span class="dot"></span><span><strong>Estrategias</strong>: blue‑green, canary, feature flags, rollback rápido.</span></li>
+          <li><span class="dot"></span><span><strong>Infraestructura como código</strong>, entornos reproducibles, contenedores y orquestación.</span></li>
+          <li><span class="dot"></span><span><strong>Observabilidad</strong>: métricas, logs y trazas distribuidas.</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Operación y SRE</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>SLIs/SLOs</strong> y presupuestos de error.</span></li>
+          <li><span class="dot"></span><span><strong>Gestión de incidentes</strong>, post‑mortems sin culpables, aprendizaje organizacional.</span></li>
+          <li><span class="dot"></span><span><strong>Capacidad y resiliencia</strong>: autoescalado, tolerancia a fallos, pruebas de caos.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= CONFIGURACIÓN & VERSIONADO ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Gestión de la configuración</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Control de versiones</strong> con flujos Git (trunk‑based o GitFlow) y revisiones obligatorias.</span></li>
+          <li><span class="dot"></span><span><strong>Gestión de artefactos</strong> (binarios, contenedores) y trazabilidad de releases.</span></li>
+          <li><span class="dot"></span><span><strong>Infraestructura declarativa</strong> y parámetros externalizados (12‑factor).</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Métricas de proceso y producto</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Métricas de entrega</strong> (DORA): tiempo de cambio, frecuencia de despliegue, tasa de fallas, MTTR.</span></li>
+          <li><span class="dot"></span><span><strong>Calidad del código</strong>: cobertura, defectos/KLOC, mantenibilidad, code smells.</span></li>
+          <li><span class="dot"></span><span><strong>Experiencia del usuario</strong>: tiempos p95/p99, error rate, NPS/CSAT.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= SEGURIDAD & CUMPLIMIENTO ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Seguridad</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Modelado de amenazas</strong> (p.e., STRIDE) y requisitos de seguridad desde el inicio.</span></li>
+          <li><span class="dot"></span><span><strong>Pruebas</strong>: SAST/DAST, análisis de dependencias (SBOM), pentesting orientado a riesgo.</span></li>
+          <li><span class="dot"></span><span><strong>Gestión de secretos</strong> y principio de menor privilegio; autenticación multifactor.</span></li>
+          <li><span class="dot"></span><span><strong>Buenas prácticas</strong> frente a vulnerabilidades comunes (p.e., OWASP Top 10).</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Cumplimiento y ética</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span>Privacidad y protección de datos; retención y minimización.</span></li>
+          <li><span class="dot"></span><span>Licencias de software, cumplimiento de terceros y uso responsable de IA.</span></li>
+          <li><span class="dot"></span><span>Transparencia, accesibilidad y sostenibilidad como criterios de diseño.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= DOCUMENTACIÓN & ROLES ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Documentación viva</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Docs‑as‑code</strong>: versionadas junto al código, revisadas por pares.</span></li>
+          <li><span class="dot"></span><span><strong>Catálogo de APIs</strong> (OpenAPI), guías de ejecución, runbooks, playbooks.</span></li>
+          <li><span class="dot"></span><span><strong>ADRs</strong> para decisiones clave y criterios de reversibilidad.</span></li>
+          <li><span class="dot"></span><span><strong>Lenguaje ubicuo</strong> y modelos de dominio consistentes.</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Roles y colaboración</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span>Analista/PO, Arquitectura, Desarrollo, QA, DevOps/SRE, Seguridad, Gestión.</span></li>
+          <li><span class="dot"></span><span>Prácticas de equipo: definición de listo/hecho, estándares, acuerdos de trabajo.</span></li>
+          <li><span class="dot"></span><span>Colaboración con áreas legales, negocio y soporte.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= CASO RESUMIDO Y COMPARATIVA ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Caso resumido: aplicación de reservas</h2>
+        <p>Objetivo: lanzar una app de reservas para un campus. Requisitos clave: disponibilidad en tiempo real, pagos, notificaciones, accesibilidad AA.</p>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>Discovery</strong>: mapas de experiencia, historias de usuario, criterios de aceptación por rol.</span></li>
+          <li><span class="dot"></span><span><strong>Arquitectura</strong>: microservicios ligeros + API gateway, base de datos relacional + caché, colas para eventos.</span></li>
+          <li><span class="dot"></span><span><strong>Calidad</strong>: pruebas automáticas 70% cobertura, tests de contrato, escaneo SAST/DAST.</span></li>
+          <li><span class="dot"></span><span><strong>Entrega</strong>: pipeline CI/CD con despliegue canario y métricas DORA.</span></li>
+          <li><span class="dot"></span><span><strong>Operación</strong>: SLO 99.9%, presupuesto de error mensual, post‑mortems.</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Comparativa de enfoques</h2>
+        <table>
+          <thead>
+            <tr><th>Enfoque</th><th>Ventajas</th><th>Riesgos</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cascada/V</td><td>Trazabilidad clara, apto para regulación.</td><td>Poca adaptabilidad al cambio.</td></tr>
+            <tr><td>Iterativo</td><td>Aprendizaje progresivo, entregas frecuentes.</td><td>Requiere buena gestión de alcance.</td></tr>
+            <tr><td>Ágil</td><td>Feedback rápido, foco en valor.</td><td>Riesgo de deuda si se descuida arquitectura.</td></tr>
+            <tr><td>DevOps</td><td>Automatización y calidad en origen.</td><td>Curva de adopción de herramientas/cultura.</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <!-- ========================= GESTIÓN DE RIESGOS ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 7;">
+        <h2>Gestión de riesgos</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span>Identificación: técnicos, organizacionales, regulatorios, de terceros, operativos.</span></li>
+          <li><span class="dot"></span><span>Análisis y priorización (probabilidad × impacto), planes de respuesta y contingencia.</span></li>
+          <li><span class="dot"></span><span>Seguimiento continuo y aprendizaje post‑incidente.</span></li>
+        </ul>
+      </article>
+      <article class="card" style="grid-column: span 5;">
+        <h2>Glosario mínimo</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span><strong>V&V</strong>: verificación y validación.</span></li>
+          <li><span class="dot"></span><span><strong>CI/CD</strong>: integración y despliegue continuos.</span></li>
+          <li><span class="dot"></span><span><strong>SLI/SLO</strong>: indicador y objetivo de nivel de servicio.</span></li>
+          <li><span class="dot"></span><span><strong>ADR</strong>: registro de decisión de arquitectura.</span></li>
+          <li><span class="dot"></span><span><strong>SBOM</strong>: listado de materiales de software.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- ========================= REFERENCIAS ========================= -->
+    <section class="grid">
+      <article class="card" style="grid-column: span 12;">
+        <h2>Referencias clave</h2>
+        <ul class="clean">
+          <li><span class="dot"></span><span>IEEE Computer Society — SWEBOK (Software Engineering Body of Knowledge).</span></li>
+          <li><span class="dot"></span><span>ISO/IEC/IEEE 12207 — Procesos del ciclo de vida del software.</span></li>
+          <li><span class="dot"></span><span>ISO/IEC 25010 — Modelo de calidad del producto de software.</span></li>
+          <li><span class="dot"></span><span>ISO/IEC/IEEE 29148 — Ingeniería de requisitos.</span></li>
+          <li><span class="dot"></span><span>ISO/IEC/IEEE 15288 — Ciclo de vida de sistemas.</span></li>
+          <li><span class="dot"></span><span>OWASP — Buenas prácticas de seguridad de aplicaciones.</span></li>
+          <li><span class="dot"></span><span>Manifiesto Ágil — valores y principios.</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <footer class="card" style="margin-top: 18px;">
+      <p>Electiva I — Introducción a la Ingeniería del Software (S10A · S10B). Documento de referencia.</p>
+    </footer>
+  </main>
+</body>
+</html>
